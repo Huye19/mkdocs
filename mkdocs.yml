@@ -18,8 +18,17 @@ nav:
       - 前言: studyDocs/git/index.md
       - 团队协作: studyDocs/git/work.md
 
-  - 测试二:
-    - 前言: two/index.md
+  - 笔记:
+    - 前言: studyNotes/index.md
+    - Android:
+      - 前言: studyNotes/android/index.md
+    - HarmonyOS:
+      - 前言: studyNotes/harmonyos/index.md
+    - TypeScript:
+      - 前言: studyNotes/typescript/index.md
+    - English:
+      - 前言: studyNotes/english/index.md
+      
 
   - 测试三:
     - 前言: three/index.md
