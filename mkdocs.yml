@@ -1,1 +1,91 @@
-site_name: My Docs
+site_name: 胡远夷的个人博客
+
+markdown_extensions:
+  - pymdownx.highlight
+  - attr_list
+  - md_in_html
+
+
+nav:
+  - 文档:
+    - 前言: studyDocs/index.md
+    - Android: 
+      - 前言: studyDocs/android/index.md
+      - MVP模式: studyDocs/android/mvp.md
+    - HarmonyOS:
+      - 前言: studyDocs/harmonyOS/index.md
+    - Git:
+      - 前言: studyDocs/git/index.md
+      - 团队协作: studyDocs/git/work.md
+
+  - 测试二:
+    - 前言: two/index.md
+
+  - 测试三:
+    - 前言: three/index.md
+
+  - 测试四:
+    - 前言: four/index.md
+
+extra:
+  alternate:
+    - name: 简体中文
+      link: /
+      lang: zh
+    - name: English
+      link: /en/ 
+      lang: en
+    - name: Deutsch
+      link: /de/
+      lang: de
+
+theme:
+  name: material
+
+  features:
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.expand
+    - navigation.path
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+
+  palette:
+
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+  
+      
+      
+copyright: Copyright &copy; 2023 - 至今 胡远夷
+
+
+
+repo_url: https://github.com/huye19
+repo_name: 胡远夷的Github存储库
