@@ -12,11 +12,14 @@ nav:
     - Android: 
       - 前言: studyDocs/android/index.md
       - MVP模式: studyDocs/android/mvp.md
+      - Android: studyDocs/android/specs.md
     - HarmonyOS:
       - 前言: studyDocs/harmonyOS/index.md
     - Git:
       - 前言: studyDocs/git/index.md
       - 团队协作: studyDocs/git/work.md
+    - Linux:
+      - Clash: studyDocs/linux/clash.md
 
   - 笔记:
     - 前言: studyNotes/index.md
@@ -28,10 +31,26 @@ nav:
       - 前言: studyNotes/typescript/index.md
     - English:
       - 前言: studyNotes/english/index.md
+    - Java:
+      - 前言: studyNotes/Java/index.md
       
 
-  - 测试三:
-    - 前言: three/index.md
+  - 日志:
+    - 前言: log/index.md
+    - 2024:
+      - 三月:
+        - 6号 周三 : log/2024/March/6th.md
+        - 7号 周四 : log/2024/March/7th.md
+        - 8号 周五 : log/2024/March/8th.md
+        - 9号 周六 : log/2024/March/9th.md
+        - 10号 周日 : log/2024/March/10th.md
+        - 11号 周一 : log/2024/March/11th.md
+        - 12号 周二 : log/2024/March/12th.md
+        - 13号 周三 : log/2024/March/13th.md
+        - 14号 周四 : log/2024/March/14th.md
+        - 15号 周五 : log/2024/March/15th.md
+        - 16号 周六 : log/2024/March/16th.md
+
 
   - 测试四:
     - 前言: four/index.md
