@@ -1,0 +1,2527 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../specs/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.13">
+    
+    
+      
+        <title>MVP模式 - 胡远夷的个人博客</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.7e359304.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#mvp" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="胡远夷的个人博客" class="md-header__button md-logo" aria-label="胡远夷的个人博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            胡远夷的个人博客
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              MVP模式
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="/" hreflang="zh" class="md-select__link">
+              简体中文
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/en/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="/de/" hreflang="de" class="md-select__link">
+              Deutsch
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/huye19" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    胡远夷的Github存储库
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  文档
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../studyNotes/" class="md-tabs__link">
+          
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../log/" class="md-tabs__link">
+          
+  
+  日志
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../four/" class="md-tabs__link">
+          
+  
+  测试四
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="胡远夷的个人博客" class="md-nav__button md-logo" aria-label="胡远夷的个人博客" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    胡远夷的个人博客
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/huye19" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    胡远夷的Github存储库
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    文档
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            文档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    MVP模式
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    MVP模式
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.MVP模式的概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.MVP模式的工作流程
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.MVP模式的优点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.MVP模式的示例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5mvpapp" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.实战一个基于MVP模式的向后台请求登录的App：
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5.实战一个基于MVP模式的向后台请求登录的App：">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、准备：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、基础框架
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、基础框架">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1basemodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.BaseModel：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2baseview" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.BaseView：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3basepresenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.BasePresenter：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4baseactivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.BaseActivity（抽象类）：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5icontract" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.IContract：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6modelimpl" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.ModelImpl：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7presenterimpl" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.PresenterImpl：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8mainactivity" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.MainActivity：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6mvp" class="md-nav__link">
+    <span class="md-ellipsis">
+      6.MVP的绑定
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6.MVP的绑定">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、实现绑定关键代码：
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、实现绑定关键代码：">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1presenterimpljava" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.PresenterImpl.java中：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2modelimpljava" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.ModelImpl.java中：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3baseactivityjava" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.BaseActivity.java中：
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4mainactivityjava" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.MainActivity.java中：
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7okhttp" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.OkHttp的使用：
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../specs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HarmonyOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            HarmonyOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../harmonyOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_4" id="__nav_1_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Git
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_4">
+            <span class="md-nav__icon md-icon"></span>
+            Git
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../git/work/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    团队协作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_5" id="__nav_1_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Linux
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../linux/clash/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clash
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../studyNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Android
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Android
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../studyNotes/android/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    HarmonyOS
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            HarmonyOS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../studyNotes/harmonyos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    TypeScript
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            TypeScript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../studyNotes/typescript/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    English
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            English
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../studyNotes/english/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Java
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Java
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../studyNotes/Java/index.md" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    日志
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            日志
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            2024
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_1" id="__nav_3_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    三月
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            三月
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/6th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6号 周三
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/7th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7号 周四
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/8th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8号 周五
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/9th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9号 周六
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/10th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10号 周日
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/11th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11号 周一
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/12th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12号 周二
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/13th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13号 周三
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/14th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14号 周四
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/15th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15号 周五
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../log/2024/March/16th/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16号 周六
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    测试四
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            测试四
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../four/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前言
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="mvp">MVP + 多模块方式</h1>
+<h2 id="1mvp">1.MVP模式的概要</h2>
+<p>MVP（Model-View-Presenter）是一种软件架构模式，用于将应用程序的逻辑和表示分离。它包含三个主要组件：模型（Model）、视图（View）和Presenter。</p>
+<ol>
+<li>模型（Model）：
+   模型是应用程序的数据层，负责处理数据的获取、存储、操作和处理。它通常包含数据实体、数据库操作、网络请求等。模型不依赖于视图和Presenter，它只关注数据的处理和管理。</li>
+<li>视图（View）：
+   视图是用户界面的展示层，负责显示数据和与用户进行交互。视图向用户展示数据，并将用户的操作传递给Presenter进行处理。视图应该尽量保持简单和无逻辑，它主要负责显示和响应用户的输入。</li>
+<li>Presenter（Presenter）：
+   Presenter充当了模型和视图之间的中间层，负责处理业务逻辑和协调模型和视图之间的交互。它接收用户输入和视图的回调，根据业务规则处理数据，并更新视图的状态。Presenter不直接操作数据，而是通过模型来处理数据操作。</li>
+</ol>
+<h2 id="2mvp">2.MVP模式的工作流程</h2>
+<ol>
+<li><strong>用户操作触发事件：</strong> 用户在View（通常是Activity或Fragment）上执行某种操作，例如点击按钮、输入文本等。</li>
+<li><strong>View通知Presenter：</strong> View将用户的操作通知给Presenter。通常，View中会有相应的回调接口或方法，Presenter会实现这些接口或调用这些方法，以便能够接收View的事件通知。</li>
+<li><strong>Presenter处理业务逻辑：</strong> Presenter接收到View的通知后，负责处理业务逻辑。这可能包括从Model中获取数据、对数据进行处理、更新数据等操作。</li>
+<li><strong>Presenter更新Model：</strong> 如果需要，Presenter可能会更新Model中的数据，例如进行网络请求、数据库操作等。</li>
+<li><strong>Presenter更新View：</strong> 一旦业务逻辑完成并且Model更新完毕，Presenter将更新的数据传递给View，以便更新用户界面。这通常通过调用View的方法或接口来实现。</li>
+<li><strong>View更新UI：</strong> View接收到Presenter传递的数据后，负责更新用户界面。这包括显示新的数据、刷新列表、更新图形元素等。</li>
+</ol>
+<p>整个流程中，Model负责处理数据的获取、存储和处理，View负责显示数据和接收用户输入，而Presenter则是连接Model和View的中间层，负责应用程序的业务逻辑。</p>
+<h2 id="3mvp">3.MVP模式的优点</h2>
+<ul>
+<li>分离关注点：将应用程序的逻辑与表示分离，提高了代码的可维护性和可测试性。</li>
+<li>可扩展性：由于各个组件之间的松耦合关系，可以方便地对每个组件进行单独的修改和扩展。</li>
+<li>可复用性：Presenter和模型可以在不同的视图中重复使用，提高了代码的重用性。</li>
+<li>支持并行开发：开发人员可以同时进行模型、视图和Presenter的开发，提高开发效率。</li>
+</ul>
+<h2 id="4mvp">4.MVP模式的示例</h2>
+<p>项目结构包括base接口(MVP的基础接口)、Baseactivity(抽象类)、契约接口Contract和MVP实现接口的类。</p>
+<p>在MVP模式中，Base View接口可以定义一些通用的方法，用于与View层交互。这些方法可以包括：</p>
+<ol>
+<li>显示和隐藏加载进度条的方法：可以有<code>showLoading()</code>和<code>hideLoading()</code>方法，用于在View层显示和隐藏加载进度条，提供良好的用户体验。</li>
+<li>显示提示消息的方法：可以有<code>showMessage(String message)</code>方法，用于显示一条提示消息给用户，例如成功提示、错误提示等。</li>
+<li>显示和隐藏空数据视图的方法：可以有<code>showEmptyView()</code>和<code>hideEmptyView()</code>方法，用于显示和隐藏数据为空时的视图，例如空列表提示、空页面等。</li>
+<li>显示和隐藏错误视图的方法：可以有<code>showErrorView()</code>和<code>hideErrorView()</code>方法，用于显示和隐藏数据加载错误时的视图，例如网络错误提示、数据解析错误等。</li>
+<li>跳转到其他页面的方法：可以有<code>navigateTo(Class&lt;?&gt; destination)</code>方法，用于跳转到其他页面，可以通过参数传递目标页面的类。</li>
+<li>显示和隐藏键盘的方法：可以有<code>showKeyboard()</code>和<code>hideKeyboard()</code>方法，用于显示和隐藏软键盘。</li>
+</ol>
+<p>Base Model是一个接口，用于定义Model层的通用方法。它可以包括以下内容：</p>
+<ol>
+<li>数据获取和处理的方法：包括从服务器获取数据、本地数据存储、数据加工处理等方法。</li>
+<li>数据回调和通知的方法：定义数据加载成功、失败等回调方法，以及通知Presenter层的方法。</li>
+<li>数据清理和释放资源的方法：包括清理缓存、关闭数据库连接、释放资源等方法。</li>
+</ol>
+<p>Base Presenter是一个接口，用于定义Presenter层的通用方法。它可以包括以下内容：</p>
+<ol>
+<li>
+<p>视图绑定和解绑的方法：定义绑定View和解绑View的方法，用于与具体的View进行交互。</p>
+</li>
+<li>
+<p>业务逻辑处理的方法：包括处理用户输入、响应View的事件、处理数据等方法。</p>
+</li>
+<li>
+<p>生命周期回调的方法：定义Presenter层的生命周期方法，例如onCreate、onStart、onResume等方法。</p>
+</li>
+<li>
+<p>错误处理和异常处理的方法：定义处理错误和异常情况的方法，例如网络错误、数据解析错误等。</p>
+</li>
+</ol>
+<p>BaseView：基础视图接口
+BaseModel：基础模型接口
+BasePresenter：基础Presenter接口
+Contract：契约接口，可能定义了视图、模型和Presenter之间的交互合同
+BaseActivity：基础Activity类
+MainActivity：具体的Activity类
+PresenterImpl：Presenter的实现类
+ModelImpl：模型的实现类
+这种结构是符合 MVP 模式的基本设计思想的，因为它将视图、模型和Presenter分离，并使用接口进行交互。这样的设计有助于解耦和测试，提高代码的可维护性和可扩展性。</p>
+<p>BaseView、BaseModel和BasePresenter定义了通用的方法和行为，可以在具体的视图、模型和Presenter中进行扩展和实现。</p>
+<p>Contract接口用于定义视图、模型和Presenter之间的契约，明确它们的职责和交互方式。通过契约接口，可以清晰地了解视图和Presenter之间的方法调用关系，提高代码的可读性和可维护性。</p>
+<p>BaseActivity是一个基础的Activity类，可能提供一些通用的方法和行为，供具体的Activity类继承和使用。</p>
+<p>MainActivity是具体的Activity类，它实现了视图接口，负责处理用户界面的展示和交互。</p>
+<p>PresenterImpl是Presenter的具体实现类，它实现了Presenter接口，负责处理业务逻辑和协调视图和模型之间的交互。</p>
+<p>ModelImpl是模型的具体实现类，它实现了模型接口，负责数据的获取和处理。</p>
+<h2 id="5mvpapp">5.实战一个基于MVP模式的向后台请求登录的App：</h2>
+<h3 id="_1">一、准备：</h3>
+<p>在新建的项目中的模块名下面新建五个包，分别是Base、Presenter、View、Model、Contract。</p>
+<p>Base中有三个泛型接口（该接口的泛型参数 <code>T</code> 必须是 <code>BasePresenter</code> 或其子类。）和一个类：BaseView、BaseActivity（实现了BaseView接口）、BaseModel、BasePresenter。</p>
+<p>Contract包中创建IContract接口，再分别创建View、Presenter、Model三个接口。</p>
+<p>Presenter中有一个实现Contract包中IContract接口的类：PresenterImpl</p>
+<p>Model、View（继承BaseView）同理。</p>
+<h3 id="_2">二、基础框架</h3>
+<h4 id="1basemodel">1.BaseModel：</h4>
+<pre><code>public interface BaseModel&lt;T extends BasePresenter&gt; {
+        //绑定p层
+    void attachPresenter(T presenter);
+
+}
+</code></pre>
+<p>接口 <code>BaseModel&lt;T extends BasePresenter&gt;</code> 定义了一个泛型接口 <code>BaseModel</code>，该接口的泛型参数 <code>T</code> 必须是 <code>BasePresenter</code> 或其子类。</p>
+<p>接口中声明了一个方法 <code>attachPresenter(T presenter)</code>，用于将一个实现了 <code>BasePresenter</code> 接口的对象绑定到当前的模型（Model）中。通过该方法，Presenter 可以与对应的 Model 建立关联。</p>
+<p>该方法的详细说明如下：</p>
+<ol>
+<li><code>void</code>：表示该方法没有返回值。</li>
+<li><code>attachPresenter</code>：方法名，用于绑定 Presenter。</li>
+<li><code>(T presenter)</code>：方法参数，表示需要传入一个类型为 <code>T</code> 的参数 <code>presenter</code>，这里的 <code>T</code> 是在接口声明时定义的泛型参数。</li>
+<li><code>T extends BasePresenter</code>：该方法的泛型参数约束，表示参数 <code>presenter</code> 的类型必须是 <code>BasePresenter</code> 或其子类。</li>
+</ol>
+<p>通过实现该接口的类可以在方法中调用 <code>attachPresenter()</code> 方法，将对应的 Presenter 传递给 Model，并与其建立关联。这样，Presenter 和 Model 就可以进行交互，实现业务逻辑的处理。</p>
+<h4 id="2baseview">2.BaseView：</h4>
+<pre><code>public interface BaseView {
+        //提示消息
+        void showMessage(String message);
+
+}
+</code></pre>
+<h4 id="3basepresenter">3.BasePresenter：</h4>
+<pre><code>public interface BasePresenter&lt;T extends BaseView, E extends BaseModel&gt; {
+    //绑定view
+    用于将一个实现了 BaseView 接口的对象绑定到当前的 Presenter 中。通过该方法，Presenter 可以与对应的 View 建立关联。
+    void attachView(T view);
+
+    // 解绑
+    void detachView();
+
+    //绑定model
+    public E attachModel();
+
+    //解绑
+    void detachModel();
+}
+</code></pre>
+<h4 id="4baseactivity">4.BaseActivity（抽象类）：</h4>
+<pre><code>public abstract class BaseActivity&lt;T extends BasePresenter&gt; extends AppCompatActivity implements BaseView {
+    protected T presenter;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getLayout());
+
+        //创建presenter对象
+        presenter = CreatePresenter();
+        if (presenter != null) {
+            presenter.attachView(this);
+        }
+
+        initial();
+    }
+    protected abstract int getLayout(); 
+
+    protected abstract T CreatePresenter(); 
+
+    protected abstract void initial();
+
+}
+</code></pre>
+<h4 id="5icontract">5.IContract：</h4>
+<pre><code>public interface IContract {
+    interface View extends BaseView {
+
+    }
+
+    interface Presenter extends BasePresenter&lt;View,Model&gt; {
+        //p层接受v层的请求，向m层请求
+        void handleLogin(String account, String password);
+
+        //p层接受m层返回的信息,处理后向v层请求
+        void resultLogin(Boolean result);
+
+    }
+
+    interface Model extends BaseModel&lt;Presenter&gt; {
+        //处理登录
+        void Login(String account, String password);
+    }
+
+}
+</code></pre>
+<h4 id="6modelimpl">6.ModelImpl：</h4>
+<pre><code>public class ModelImpl implements IContract.Model {
+
+    private IContract.Presenter Presenter;
+
+    @Override
+    public void attachPresenter(IContract.Presenter presenter) {
+        Presenter = presenter;
+    }
+
+
+    @Override
+    public void Login(String account, String password) {
+
+        OkHttpClient client = new OkHttpClient();
+        String url = &quot;http://192.168.31.178:8000/login/&quot;;
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put(&quot;account&quot;, account);
+            jsonObject.put(&quot;password&quot;, password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody =   RequestBody.create(MediaType.parse(&quot;application/json&quot;), jsonObject.toString());
+
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            // 请求失败处理
+                    e.printStackTrace();
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Presenter.resultLogin(false);
+                    }
+                });
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+
+                // 请求成功处理
+                if (response.isSuccessful()) {
+
+                    try{
+                        ResponseBody responseBody = response.body();
+                        if (responseBody != null) {
+                            String responseData = responseBody.string();
+                            JSONObject jsonObject1 = new JSONObject(responseData);
+
+                            if ((jsonObject1.optString(&quot;message&quot;)).equals(&quot;登录成功&quot;)) {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Presenter.resultLogin(true);
+                                    }
+                                });
+                            } else {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Presenter.resultLogin(false);
+                                    }
+                                });
+                            }
+                            responseBody.close();
+                        }
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+
+                } else {
+
+
+                    System.out.println(&quot;数据处理失败&quot;);
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Presenter.resultLogin(false);
+                        }
+                    });
+
+                }
+            }
+        });
+
+    }
+}
+
+</code></pre>
+<h4 id="7presenterimpl">7.PresenterImpl：</h4>
+<pre><code>public class PresenterImpl implements IContract.Presenter {
+    private IContract.View View;
+    private IContract.Model Model;
+
+    @Override       //this.view 是在当前类中使用的引用，用于明确指示当前类中的成员变量 view
+    public void attachView(IContract.View view) {
+        this.View = view;
+        this.Model =attachModel();
+        this.Model.attachPresenter(this);
+    }
+
+    @Override
+    public void detachView() { this.View = null; }
+
+    @Override
+    public ModelImpl attachModel() {
+        return new ModelImpl(); 
+    }
+
+    @Override
+    public void detachModel() { Model = null; }
+
+
+    @Override
+    public void handleLogin(String account, String password) {
+        Model.Login(account, password);
+    }
+
+    @Override
+    public void resultLogin(Boolean result) {
+        if (result) {
+            View.loginResult(&quot;登录成功&quot;);
+        } else {
+            View.loginResult(&quot;登录失败&quot;);
+        }
+    }
+}
+</code></pre>
+<h4 id="8mainactivity">8.MainActivity：</h4>
+<pre><code>public class MainActivity extends BaseActivity&lt;PresenterImpl&gt; implements IContract.View {
+
+    EditText account;
+    EditText password;
+    Button button;
+
+
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected PresenterImpl CreatePresenter() {
+        return new PresenterImpl();
+    }
+
+    @Override
+    protected void initial() {
+        account = findViewById(R.id.et_account);
+        password = findViewById(R.id.et_password);
+        button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.handleLogin(account.getText().toString(), password.getText().toString());
+            }
+        });
+    }
+
+    @Override
+    public void loginResult(String Msg) {
+        Toast.makeText(this,Msg, Toast.LENGTH_SHORT).show();
+    }
+}
+</code></pre>
+<p>登录功能已实现，响应慢，待解决。</p>
+<h2 id="6mvp">6.MVP的绑定</h2>
+<h3 id="_3">一、</h3>
+<p>​       MVP模式中的绑定是通过Presenter构造函数来实现的，View在创建Presenter实例时传递自身给Presenter，从而建立了双向关联。解绑是通过在Activity（或Fragment）的生命周期方法（例如onDestroy）中调用Presenter的解绑方法来实现的。这样可以确保在Activity销毁时解除View和Presenter之间的关联，避免内存泄漏。</p>
+<h3 id="_4">二、实现绑定关键代码：</h3>
+<h5 id="1presenterimpljava">1.PresenterImpl.java中：</h5>
+<pre><code>private IContract.IView View;
+private IContract.IModel Model;
+@Override
+public void attachView(IContract.IView view) {
+    View = view;
+    Model = attachModel();//实现绑定m层
+    Model.attachPresenter(this);//调用m层方法时将自身传递过去实现m层绑定p层
+}
+@Override
+public IContract.IModel attachModel() {
+    return new ModelImpl();
+}
+</code></pre>
+<h5 id="2modelimpljava">2.ModelImpl.java中：</h5>
+<pre><code>private IContract.IPresenter Presenter;
+
+@Override
+public void attachPresenter(IContract.IPresenter presenter) {
+    Presenter = presenter;//p层调用此方法时将自身传递过来实现绑定p层
+}
+</code></pre>
+<h5 id="3baseactivityjava">3.BaseActivity.java中：</h5>
+<pre><code>public abstract class BaseActivity&lt;T extends BasePresenter&gt; extends AppCompatActivity implements BaseView 
+
+
+protected T Presenter;
+
+Presenter = CreatePresenter();//实现绑定p层
+if (Presenter != null) {
+    Presenter.attachView(this);//调用p层方法时将自身传递过去实现p层绑定v层
+}
+
+protected abstract T CreatePresenter();
+</code></pre>
+<h5 id="4mainactivityjava">4.MainActivity.java中：</h5>
+<pre><code>public class MainActivity extends BaseActivity&lt;PresenterImpl&gt; implements IContract.IView
+
+@Override
+protected PresenterImpl CreatePresenter() {
+    return new PresenterImpl();
+}
+</code></pre>
+<h2 id="7okhttp">7.OkHttp的使用：</h2>
+<pre><code>public class ModelImpl implements IContract.IModel {
+
+    private static final String TAG = &quot;modelImpl&quot;;
+
+    private IContract.IPresenter Presenter;
+    @Override
+    public void attachPresenter(IContract.IPresenter presenter) {
+        Presenter = presenter;
+    }
+
+    @Override
+    public void Login(String account, String password) {
+
+        OkHttpClient client = new OkHttpClient();
+        //创建OkHttpClient实例，用于发送HTTP请求：
+        String url = &quot;http://192.168.31.178:8000/login/&quot;;
+        //提前将url存储在变量中
+        JSONObject jsonObject = new JSONObject();
+        //用于存储json格式的数据
+        try {
+            jsonObject.put(&quot;account&quot;, account);
+            jsonObject.put(&quot;password&quot;, password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        //将键值对写入jsonObject
+        RequestBody requestBody = RequestBody.create(MediaType.parse(&quot;application/json&quot;),jsonObject.toString());
+        //使用RequestBody.create方法从jsonObject中创建请求体。第一个参数是指定请求体的类型，这里是json格式，第二个参数是请求体的内容
+        //toString将JSONObject对象中的键值对转换为JSON格式的字符串
+        Request request = new Request.Builder()
+                .url(url)
+                .post(requestBody)
+                .build();
+        //构建一个HTTP请求，创建了一个Request.Builder对象，用于设置请求的各种属性。
+        //.build()：这是用于构建最终的Request对象的方法。在设置完所有请求属性后，我们调用.build()方法来创建Request对象。
+
+
+
+
+
+
+
+                通过enqueue方法，异步发送HTTP请求，Callback对象用于处理请求结果。
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            // 请求失败处理
+                    e.printStackTrace();
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Presenter.resultLogin(false);
+                    }
+                });
+
+            }
+
+
+                        如果请求成功，在onResponse方法中，首先获取响应数据并解析为JSON对象。如果JSON对象中的&quot;message&quot;字段值为&quot;登录成功&quot;，则通过Handler切换到主线程，调用Presenter的resultLogin(true)方法通知结果为true；否则，调用resultLogin(false)方法通知结果为false。
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+
+                // 请求成功处理，判断响应码
+                if (response.isSuccessful()) {
+
+                    try{
+                        ResponseBody responseBody = response.body();
+                        if (responseBody != null) {
+                            String responseData = responseBody.string();//拿到返回所有内容
+                            JSONObject jsonObject1 = new JSONObject(responseData);
+                                                        解析为JSON对象，通过optString方法拿到值
+                            if ((jsonObject1.optString(&quot;message&quot;)).equals(&quot;登录成功&quot;)) {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                    更新UI必须在主线程，通过Handler实现
+                                        Presenter.resultLogin(true);
+                                    }
+                                });
+                            } else {
+                                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Presenter.resultLogin(false);
+                                    }
+                                });
+                            }
+                            responseBody.close();
+                        }
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
+
+                } else {
+
+
+                    System.out.println(&quot;数据处理失败&quot;);
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Presenter.resultLogin(false);
+                        }
+                    });
+
+                }
+            }
+        });
+
+    }
+
+    !response.isSuccessful() 是在 onResponse 方法中对请求结果的HTTP状态码进行判断，用于判断请求是否失败。
+public void onFailure(Call call, IOException e) 是通过实现 Callback 接口的 onFailure 方法来处理请求失败的逻辑，当请求失败时，OkHttp将调用该方法并传递失败的信息。
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 - 至今 胡远夷
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.path", "toc.integrate", "navigation.top", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8d2eff1.min.js"></script>
+      
+    
+  </body>
+</html>
